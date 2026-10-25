@@ -1,5 +1,7 @@
 # Report Checker
 
+[![report-checker](https://github.com/nurah-kamal/reporting/actions/workflows/report-checker.yml/badge.svg?branch=main&event=push)](https://github.com/nurah-kamal/reporting/actions/workflows/report-checker.yml) 38 tests
+
 **Add a finished report and the data it was made from. Every figure is worked out again from the source, and each one that disagrees gets its likely cause: rounding, a different filter or date range, duplicate rows, a stale extract, rows lost in a join, or a total that doesn't add up. It all runs in the browser, so no file leaves your machine.**
 
 **Live page:** https://nurah-kamal.github.io/reporting/report-checker/ (click "Try a sample").

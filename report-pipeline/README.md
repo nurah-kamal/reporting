@@ -1,5 +1,7 @@
 # report-pipeline
 
+[![report-pipeline](https://github.com/nurah-kamal/reporting/actions/workflows/report-pipeline.yml/badge.svg?branch=main&event=push)](https://github.com/nurah-kamal/reporting/actions/workflows/report-pipeline.yml) 8 tests
+
 **A weekly report that writes itself. Every Monday morning a GitHub Actions job pulls the European Central Bank's reference rates, works out how the rand did against the euro, the dollar and the pound, and commits a dated Excel workbook and a summary to [outputs/](outputs/). Nobody has to remember to run it, and every past week stays in the repository.**
 
 The latest summary, from [outputs/latest.md](outputs/latest.md):

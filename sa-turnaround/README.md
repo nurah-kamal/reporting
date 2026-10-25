@@ -1,5 +1,7 @@
 # SA Turnaround
 
+[![sa-turnaround](https://github.com/nurah-kamal/reporting/actions/workflows/sa-turnaround.yml/badge.svg?branch=main&event=push)](https://github.com/nurah-kamal/reporting/actions/workflows/sa-turnaround.yml) 21 tests
+
 **Working days for South Africa, and a one-page report on what counting them properly changes. Every holiday rule has a source, and every number on the page comes from a SQL file you can open.**
 
 **Live page:** https://nurah-kamal.github.io/reporting/sa-turnaround/ (try the calculator with any two dates).
