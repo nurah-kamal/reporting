@@ -25,11 +25,15 @@ jobs:
       - name: build sa-turnaround
         working-directory: sa-turnaround
         run: npm test && npm run build
+      - name: build report-checker
+        working-directory: report-checker
+        run: npm test && npm run build
       - name: assemble the site
         run: |
           mkdir -p _site
           cp site-index/index.html site-index/styles.css _site/
           cp -r sa-turnaround/dist _site/sa-turnaround
+          cp -r report-checker/dist _site/report-checker
           mkdir -p _site/plain-board
           cp -r plain-board/index.html plain-board/pages plain-board/assets _site/plain-board/
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
