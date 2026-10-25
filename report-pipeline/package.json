@@ -1,0 +1,21 @@
+{
+  "name": "report-pipeline",
+  "version": "1.0.0",
+  "description": "Pulls the ECB reference rates every week and writes a dated Excel report on the rand.",
+  "scripts": {
+    "report": "node bin/run.js",
+    "test": "node --test"
+  },
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "exceljs": "4.4.0"
+  },
+  "overrides": {
+    "uuid": "11.1.1"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22.13"
+  }
+}

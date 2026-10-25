@@ -9,8 +9,9 @@
 | [SA Turnaround](sa-turnaround/) | Counting calendar days blamed a service desk for public holidays. A tested South African working-day library, SQL analysis of three years of synthetic requests, and a one-page report with a calculator. | [Open](https://nurah-kamal.github.io/reporting/sa-turnaround/) | JavaScript, SQLite |
 | [Report Checker](report-checker/) | Add a finished report and its source data, and every figure is worked out again from the source, with the likely cause of each one that disagrees. CSV or Excel, all in the browser, tested against 41 planted mistakes. | [Open](https://nurah-kamal.github.io/reporting/report-checker/) | JavaScript |
 | [Plain Board](plain-board/) | A small internal reporting board where every figure says what it does not prove. Twelve pages, every chart drawn in SVG, no framework. | [Open](https://nurah-kamal.github.io/reporting/plain-board/) | HTML, CSS, JavaScript |
+| [Report Pipeline](report-pipeline/) | A weekly report that writes itself: every Monday a scheduled job pulls the ECB reference rates and commits a dated Excel workbook on the rand against the euro, dollar and pound. Only that job can write to the repo. | [Latest](report-pipeline/outputs/latest.md) | JavaScript, GitHub Actions, Excel |
 
-More projects join as they ship, next a scheduled report pipeline. Dashboards and BI models are in [business-intelligence](https://github.com/nurah-kamal/business-intelligence).
+More projects join as they ship. Dashboards and BI models are in [business-intelligence](https://github.com/nurah-kamal/business-intelligence).
 
 ## How this repo is organised
 

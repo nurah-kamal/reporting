@@ -1,0 +1,74 @@
+name: report-pipeline
+
+on:
+  schedule:
+    # Mondays at 05:00 UTC (07:00 in South Africa), after Friday's ECB fixing.
+    - cron: '0 5 * * 1'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['report-pipeline/**', '.github/workflows/report-pipeline.yml']
+  pull_request:
+    branches: [main]
+    paths: ['report-pipeline/**', '.github/workflows/report-pipeline.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: report-pipeline
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: report-pipeline
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npm test
+
+  report:
+    # The only job that can write: it adds the week's report to outputs/.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: report-pipeline
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm test
+      - run: npm run report -- --out outputs
+      - name: Commit the report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898581+github-actions[bot]@users.noreply.github.com"
+          git add outputs
+          if git diff --cached --quiet; then
+            echo "No new report this week."
+            exit 0
+          fi
+          week=$(ls outputs/rand-week-ending-*.xlsx | sort | tail -1 | sed 's/.*ending-\(.*\)\.xlsx/\1/')
+          git commit -m "add the rand report for the week ending $week"
+          git pull --rebase "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" main
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" HEAD:main
