@@ -2,8 +2,8 @@
 
 ## Going public
 
-- [ ] Move into `report-checker/` of `nurah-kamal/reporting`, with `.github/workflows/report-checker.yml` at that repository's root (Nurah to say push).
-- [ ] Add `report-checker/` to the repository's Pages build, so the live link at /reporting/report-checker/ works.
+- [x] Move into `report-checker/` of `nurah-kamal/reporting`, with `.github/workflows/report-checker.yml` at that repository's root (25 Oct 2026).
+- [x] Add `report-checker/` to the repository's Pages build; the live page answers at /reporting/report-checker/ (25 Oct 2026).
 - [ ] Decide what happens to the standalone private repo `nurah-kamal/report-checker`, made before the move to field repos (Nurah).
 - [ ] Add it to the "Projects you can open" table in the profile README (Nurah to approve).
 
