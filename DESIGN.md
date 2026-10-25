@@ -1,6 +1,6 @@
 # Design
 
-The page's visual system, as built in `site/assets/styles.css` (25 Oct 2026). It is a working tool in the same pink and plum as [SA Turnaround](https://github.com/nurah-kamal/sa-turnaround), and it reads like a report someone has checked with a pen: the wrong figure is struck through and the right one is written beside it.
+The page's visual system, as built in `site/assets/styles.css` (25 Oct 2026). It is a working tool in the same pink and plum as [SA Turnaround](https://github.com/nurah-kamal/reporting-and-bi/tree/main/sa-turnaround), and it reads like a report someone has checked with a pen: the wrong figure is struck through and the right one is written beside it.
 
 ## Tokens
 

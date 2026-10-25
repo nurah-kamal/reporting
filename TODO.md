@@ -2,11 +2,10 @@
 
 ## Going public
 
-- [x] Create the private repository `nurah-kamal/report-checker` and push (25 Oct 2026).
-- [x] Check CI is green on `main`: checks and the secret scan pass; pages fails until Pages is turned on (25 Oct 2026).
-- [ ] Make the repository public (Nurah).
-- [ ] Turn on GitHub Pages with the deploy workflow, so the live link in the README works, and put it in the repository's website field (Nurah).
-- [ ] Add it to the "Projects you can open" table in the profile README, `nurah-kamal/nurah-kamal` (Nurah to approve).
+- [ ] Move into `report-checker/` of `nurah-kamal/reporting-and-bi`, with `.github/workflows/report-checker.yml` at that repository's root (Nurah to say push).
+- [ ] Add `report-checker/` to the repository's Pages build, so the live link at /reporting-and-bi/report-checker/ works.
+- [ ] Decide what happens to the standalone private repo `nurah-kamal/report-checker`, made before the move to field repos (Nurah).
+- [ ] Add it to the "Projects you can open" table in the profile README (Nurah to approve).
 
 ## Open
 

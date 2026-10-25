@@ -2,7 +2,7 @@
 
 **Add a finished report and the data it was made from. Every figure is worked out again from the source, and each one that disagrees gets its likely cause: rounding, a different filter or date range, duplicate rows, a stale extract, rows lost in a join, or a total that doesn't add up. It all runs in the browser, so no file leaves your machine.**
 
-**Live page:** https://nurah-kamal.github.io/report-checker/ (click "Try a sample").
+**Live page:** https://nurah-kamal.github.io/reporting-and-bi/report-checker/ (click "Try a sample").
 
 ![The checker after loading the sales sample: 16 of 39 figures don't match the source, all 16 planted mistakes found, reason chips for stale extract, rounding and rows lost in a join, and the report table with a struck-through average order and the source's figure beside it](docs/img/report.png)
 
@@ -83,7 +83,7 @@ No framework. No dependencies. Nothing to install.
 | **The samples** | `scripts/make-samples.js` makes the source data from a fixed seed, works out each report twice (from the right rows and from the rows the planted mistakes use) and writes down every figure that differs. |
 | **The page** | Plain HTML, CSS and JavaScript. The reader's files are read with `File.arrayBuffer()` and never sent anywhere. |
 | **The tests** | 38 tests: every planted mistake found for the right reason, every clean figure passing, each cause on a small hand-made table, the column guess, figure parsing, CSV edge cases, the Excel reader on number formats, inline strings, 1904 dates and broken files, and that the committed samples match the generator. |
-| **CI** | Two workflows. `checks` runs check, test and build on every push, plus a secret scan over the whole history. `pages` tests, builds and publishes `dist/` to GitHub Pages on every push to `main`. Actions are pinned to exact commits. |
+| **CI** | `report-checker.yml` at the root of [reporting-and-bi](https://github.com/nurah-kamal/reporting-and-bi) runs check, test and build whenever anything in `report-checker/` changes. The repository's Pages site publishes this folder's `dist/` at `/report-checker/`. Actions are pinned to exact commits. |
 
 ## Try it on your own machine
 
@@ -134,7 +134,7 @@ docs/                    how the checks work, how the samples are made
 
 ## The design
 
-Written down in [DESIGN.md](DESIGN.md): the colour tokens for light and dark mode (shared with [SA Turnaround](https://github.com/nurah-kamal/sa-turnaround)), the marks the checker makes on a report, the type sizes, and the one piece of motion.
+Written down in [DESIGN.md](DESIGN.md): the colour tokens for light and dark mode (shared with [SA Turnaround](https://github.com/nurah-kamal/reporting-and-bi/tree/main/sa-turnaround)), the marks the checker makes on a report, the type sizes, and the one piece of motion.
 
 ## Licence
 
