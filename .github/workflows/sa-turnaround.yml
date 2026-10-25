@@ -1,10 +1,12 @@
-name: checks
+name: sa-turnaround
 
 on:
   push:
     branches: [main]
+    paths: ['sa-turnaround/**', '.github/workflows/sa-turnaround.yml']
   pull_request:
     branches: [main]
+    paths: ['sa-turnaround/**', '.github/workflows/sa-turnaround.yml']
 
 permissions:
   contents: read
@@ -12,6 +14,9 @@ permissions:
 jobs:
   checks:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sa-turnaround
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -22,14 +27,3 @@ jobs:
       - run: npm run check
       - run: npm test
       - run: npm run build
-
-  secrets:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

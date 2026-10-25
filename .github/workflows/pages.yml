@@ -22,12 +22,20 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
-      - run: npm test
-      - run: npm run build
+      - name: build sa-turnaround
+        working-directory: sa-turnaround
+        run: npm test && npm run build
+      - name: assemble the site
+        run: |
+          mkdir -p _site
+          cp site-index/index.html site-index/styles.css _site/
+          cp -r sa-turnaround/dist _site/sa-turnaround
+          mkdir -p _site/plain-board
+          cp -r plain-board/index.html plain-board/pages plain-board/assets _site/plain-board/
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
-          path: dist
+          path: _site
 
   deploy:
     needs: build

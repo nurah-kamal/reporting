@@ -2,7 +2,7 @@
 
 **A small internal reporting board — the kind of page a team reads on a Monday morning — where every figure says what it does not prove.**
 
-**Live demo:** https://nurah-kamal.github.io/plain-board/ — choose **Look around as a manager**, no account needed.
+**Live demo:** https://nurah-kamal.github.io/reporting-and-bi/plain-board/ — choose **Look around as a manager**, no account needed.
 
 ![The Today page: a banner saying what needs somebody, four figures each with one line saying how it moved, and charts of how long requests have been waiting and where they came from](assets/img/screen-today.png)
 
