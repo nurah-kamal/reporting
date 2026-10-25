@@ -6,6 +6,8 @@ import { addDays, weekday } from '../lib/dates.js';
 
 const $ = (sel) => document.querySelector(sel);
 const fmt = (n) => n.toLocaleString('en-ZA');
+const days = (n) => `${n} ${n === 1 ? 'day' : 'days'}`;
+const pct1 = (n) => `${n.toFixed(1)}%`;
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const monthName = (ym) => `${MONTHS[+ym.slice(5, 7) - 1]} ${ym.slice(0, 4)}`;
 const longDate = (iso) => new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-ZA', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
@@ -117,18 +119,18 @@ function renderRefunds(r, host) {
 
 function renderCategories(r) {
   const mark = (late, base) => (late > base + 1
-    ? `<span class="pill bad">${ICON.late}${late}%</span>`
-    : `<span class="pill good">${ICON.ok}${late}%</span>`);
+    ? `<span class="pill bad">${ICON.late}${pct1(late)}</span>`
+    : `<span class="pill good">${ICON.ok}${pct1(late)}</span>`);
   const overall = r.headline.rows[0];
   const base = (100 * overall.late_by_working_days) / overall.closed_requests;
   $('[data-table="categories"]').innerHTML = table(r.by_category.rows, [
     { label: 'Category', value: (x) => x.category },
-    { label: 'Target', value: (x) => `${x.target} days` },
+    { label: 'Target', value: (x) => days(x.target) },
     { label: 'Closed', value: (x) => fmt(x.closed_requests) },
-    { label: 'Median', value: (x) => `${x.median_working} days` },
-    { label: '90th percentile', value: (x) => `${x.p90_working} days` },
+    { label: 'Median', value: (x) => days(x.median_working) },
+    { label: '90th percentile', value: (x) => days(x.p90_working) },
     { label: 'Late, working days', value: (x) => mark(x.late_working_pct, base) },
-    { label: 'Late, calendar days', value: (x) => `<span class="dim">${x.late_calendar_pct}%</span>` },
+    { label: 'Late, calendar days', value: (x) => `<span class="dim">${pct1(x.late_calendar_pct)}</span>` },
   ]);
 }
 
