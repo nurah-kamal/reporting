@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report Checker: check a report against its source</title>
+<meta name="description" content="Add a finished report and the data it was made from. Every figure is worked out again from the source, and each one that disagrees gets its likely cause. Runs in your browser; nothing is uploaded.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/styles.css">
+<script type="module" src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the checker</a>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="#top" aria-label="Report Checker, back to top">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="18" rx="3"/><path d="M2 8.5h20M9 8.5V21"/><path class="tick" d="m12.5 15 2 2 4-4.5"/></svg>
+      Report Checker
+    </a>
+    <nav aria-label="Sections">
+      <a href="#check">Check</a>
+      <a href="#method">How it decides</a>
+      <a class="gh" href="https://github.com/nurah-kamal/report-checker">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        <span>Code</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="intro" id="top">
+    <div class="intro-copy">
+      <h1>Check a report against the data it came from.</h1>
+      <p class="lede">Add a finished report and the rows it was made from. Every figure is worked out again from the source, and each one that disagrees gets its likely cause, from duplicate rows to a stale extract.</p>
+      <p class="private">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7.5" rx="1.6"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>
+        Your files stay in this browser. Nothing is uploaded or saved.
+      </p>
+    </div>
+
+    <div class="samples" id="check" aria-labelledby="samples-title">
+      <h2 id="samples-title">Try a sample</h2>
+      <p class="sub">Invented ops reports with mistakes planted in them. No person is in any of the data.</p>
+      <div class="sample-list">
+        <button type="button" class="sample" data-sample="enrolments">
+          <span class="sample-title">Monthly enrolments</span>
+          <span class="sample-meta">CSV report · 824 source rows</span>
+        </button>
+        <button type="button" class="sample" data-sample="sales">
+          <span class="sample-title">Sales by region</span>
+          <span class="sample-meta">Excel report · 2,249 source rows</span>
+        </button>
+        <button type="button" class="sample" data-sample="tickets">
+          <span class="sample-title">Support tickets</span>
+          <span class="sample-meta">CSV report · 2,497 source rows</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="files" aria-labelledby="files-title">
+    <div class="files-head">
+      <h2 id="files-title">Or check your own</h2>
+      <p class="sub">CSV or Excel (.xlsx). The report is a summary table with one row per group and the figures in columns. The source is the rows it was made from.</p>
+    </div>
+    <div class="slots">
+      <div class="slot" data-slot="report">
+        <input type="file" id="file-report" accept=".csv,.tsv,.txt,.xlsx" data-file="report">
+        <label for="file-report" class="slot-drop">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 8.5h18M9 8.5V21M3 14.5h18"/></svg>
+          <span class="slot-name">The report</span>
+          <span class="slot-hint" data-hint>Choose a file or drop it here</span>
+        </label>
+        <p class="slot-error" role="alert" data-error></p>
+      </div>
+      <div class="slot" data-slot="source">
+        <input type="file" id="file-source" accept=".csv,.tsv,.txt,.xlsx" data-file="source">
+        <label for="file-source" class="slot-drop">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 9.5h16M4 14h16M4 18.5h16"/></svg>
+          <span class="slot-name">The source data</span>
+          <span class="slot-hint" data-hint>Choose a file or drop it here</span>
+        </label>
+        <p class="slot-error" role="alert" data-error></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="recipe-wrap" data-recipe-wrap hidden>
+    <details class="panel recipe" data-recipe-details>
+      <summary>
+        <span class="recipe-title">How each figure is worked out</span>
+        <span class="recipe-sum" data-recipe-sum></span>
+      </summary>
+      <form class="recipe-form" data-recipe novalidate></form>
+    </details>
+  </section>
+
+  <section class="results" id="results" aria-labelledby="verdict" data-results hidden>
+    <div class="verdict-row">
+      <h2 id="verdict" tabindex="-1" data-verdict></h2>
+      <p class="planted" data-planted hidden></p>
+    </div>
+    <p class="run-error" role="alert" data-run-error hidden></p>
+    <div class="chips" role="group" aria-label="Show figures by reason" data-chips></div>
+
+    <div class="view-tabs" role="tablist" aria-label="Views">
+      <button type="button" role="tab" id="tab-marked" aria-controls="view-marked" aria-selected="true" data-view="marked">The report, marked</button>
+      <button type="button" role="tab" id="tab-list" aria-controls="view-list" aria-selected="false" tabindex="-1" data-view="list">Every figure</button>
+    </div>
+
+    <div class="panel view" id="view-marked" role="tabpanel" aria-labelledby="tab-marked" data-panel="marked">
+      <p class="sub view-sub">The report as you sent it. A struck-through figure disagrees with the source, which gives the number beside it. Choose any figure to see its working.</p>
+      <div class="table-wrap" data-marked></div>
+      <div class="working" aria-live="polite" data-working></div>
+    </div>
+
+    <div class="panel view" id="view-list" role="tabpanel" aria-labelledby="tab-list" data-panel="list" hidden>
+      <p class="sub view-sub">Every figure, what the report says, what the source gives, and why they differ. Figures that disagree come first.</p>
+      <div class="ledger" data-list></div>
+    </div>
+  </section>
+
+  <section class="method" id="method" aria-labelledby="method-title">
+    <h2 id="method-title">How it decides</h2>
+    <div class="method-grid">
+      <div>
+        <h3>Worked out again, not compared by eye</h3>
+        <p>Each figure is recalculated from the source rows using the rules under "How each figure is worked out": which columns pair a report row with source rows, which rows are left out, and whether the figure counts rows, adds a column, averages it or takes a share. The report's figure and the source's are compared at the precision the report shows, so 80.6% agrees with 80.64 but not with 80.66.</p>
+      </div>
+      <div>
+        <h3>A cause is named only when it reproduces the number</h3>
+        <p>For a figure that disagrees, the checker changes the source rows in one specific way at a time and recalculates. It names a cause only when that change gives the report's figure exactly. When nothing does, it says so rather than guessing.</p>
+      </div>
+      <div>
+        <h3>The order it tries</h3>
+        <ol class="order">
+          <li><b>Duplicate rows:</b> a row whose reference already appeared, counted again.</li>
+          <li><b>Different filter:</b> rows the rule leaves out were kept in.</li>
+          <li><b>Stale extract:</b> the newest period matches the source up to an earlier date.</li>
+          <li><b>Different date range:</b> a month cut a day or more short or long, or grouped by another date column.</li>
+          <li><b>Rounding:</b> within one step of the shown precision, but cut off or rounded twice.</li>
+          <li><b>Different filter:</b> one category of rows was left out.</li>
+          <li><b>Rows lost in a join:</b> rows with a blank value were dropped.</li>
+        </ol>
+        <p>Totals are checked against the rows above them first. A total that adds up but disagrees with the source carries their mistakes; one whose rows don't cover every source row has lost some, often to an inner join.</p>
+      </div>
+      <div>
+        <h3>What it can't tell</h3>
+        <p>A cause it names is the simplest change that reproduces the figure, not proof of what happened. Two mistakes in one figure, a report laid out with groups across the columns, or a figure made with a calculation it doesn't offer will show as "no single cause found". Those are the ones to check by hand.</p>
+      </div>
+    </div>
+    <p class="run">The checks are tested against the samples: every planted mistake must be found for the reason it was planted, and every clean figure must pass. Run them yourself with <code>npm test</code>. Node 22.13 or later; nothing to install.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Built by <a href="https://github.com/nurah-kamal">Nurah Kamal</a> in Cape Town. The samples are invented; the checks are real and tested.</p>
+</footer>
+</body>
+</html>

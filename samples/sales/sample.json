@@ -1,0 +1,172 @@
+{
+  "id": "sales",
+  "title": "Sales by region",
+  "blurb": "A quarterly sales report by month and region, sent as an Excel workbook, checked against the order extract.",
+  "report": "report.xlsx",
+  "source": "source.csv",
+  "recipe": {
+    "keys": [
+      {
+        "report": "Month",
+        "source": "ordered_on",
+        "as": "month"
+      },
+      {
+        "report": "Region",
+        "source": "region",
+        "as": "value"
+      }
+    ],
+    "id": "order_id",
+    "date": null,
+    "filters": [
+      {
+        "column": "status",
+        "not": "Refunded"
+      }
+    ],
+    "measures": [
+      {
+        "report": "Orders",
+        "agg": "count"
+      },
+      {
+        "report": "Revenue (R)",
+        "agg": "sum",
+        "column": "amount"
+      },
+      {
+        "report": "Average order (R)",
+        "agg": "mean",
+        "column": "amount"
+      }
+    ]
+  },
+  "planted": [
+    {
+      "row": [
+        "Jul 2026",
+        "Western Cape"
+      ],
+      "measure": "Average order (R)",
+      "reason": "rounding"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "Western Cape"
+      ],
+      "measure": "Orders",
+      "reason": "stale"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "Western Cape"
+      ],
+      "measure": "Revenue (R)",
+      "reason": "stale"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "Western Cape"
+      ],
+      "measure": "Average order (R)",
+      "reason": "stale"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "Gauteng"
+      ],
+      "measure": "Orders",
+      "reason": "stale"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "Gauteng"
+      ],
+      "measure": "Revenue (R)",
+      "reason": "stale"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "Gauteng"
+      ],
+      "measure": "Average order (R)",
+      "reason": "stale"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "KwaZulu-Natal"
+      ],
+      "measure": "Orders",
+      "reason": "stale"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "KwaZulu-Natal"
+      ],
+      "measure": "Revenue (R)",
+      "reason": "stale"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "KwaZulu-Natal"
+      ],
+      "measure": "Average order (R)",
+      "reason": "stale"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "Eastern Cape"
+      ],
+      "measure": "Orders",
+      "reason": "stale"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "Eastern Cape"
+      ],
+      "measure": "Revenue (R)",
+      "reason": "stale"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "Eastern Cape"
+      ],
+      "measure": "Average order (R)",
+      "reason": "stale"
+    },
+    {
+      "row": [
+        "Total"
+      ],
+      "measure": "Orders",
+      "reason": "join"
+    },
+    {
+      "row": [
+        "Total"
+      ],
+      "measure": "Revenue (R)",
+      "reason": "join"
+    },
+    {
+      "row": [
+        "Total"
+      ],
+      "measure": "Average order (R)",
+      "reason": "join"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "id": "enrolments",
+  "title": "Monthly enrolments",
+  "blurb": "A college's enrolment summary for January to June 2026, with fees invoiced and the share completed.",
+  "report": "report.csv",
+  "source": "source.csv",
+  "recipe": {
+    "keys": [
+      {
+        "report": "Month",
+        "source": "enrolled_on",
+        "as": "month"
+      }
+    ],
+    "id": "enrolment_id",
+    "date": null,
+    "filters": [
+      {
+        "column": "status",
+        "not": "Cancelled"
+      }
+    ],
+    "measures": [
+      {
+        "report": "Enrolments",
+        "agg": "count"
+      },
+      {
+        "report": "Fees invoiced (R)",
+        "agg": "sum",
+        "column": "fee"
+      },
+      {
+        "report": "Completed",
+        "agg": "share",
+        "column": "status",
+        "value": "Completed"
+      }
+    ]
+  },
+  "planted": [
+    {
+      "row": [
+        "Feb 2026"
+      ],
+      "measure": "Completed",
+      "reason": "rounding"
+    },
+    {
+      "row": [
+        "Mar 2026"
+      ],
+      "measure": "Enrolments",
+      "reason": "duplicates"
+    },
+    {
+      "row": [
+        "Mar 2026"
+      ],
+      "measure": "Fees invoiced (R)",
+      "reason": "duplicates"
+    },
+    {
+      "row": [
+        "Mar 2026"
+      ],
+      "measure": "Completed",
+      "reason": "duplicates"
+    },
+    {
+      "row": [
+        "May 2026"
+      ],
+      "measure": "Enrolments",
+      "reason": "filter"
+    },
+    {
+      "row": [
+        "May 2026"
+      ],
+      "measure": "Fees invoiced (R)",
+      "reason": "filter"
+    },
+    {
+      "row": [
+        "May 2026"
+      ],
+      "measure": "Completed",
+      "reason": "filter"
+    },
+    {
+      "row": [
+        "Total"
+      ],
+      "measure": "Enrolments",
+      "reason": "total"
+    },
+    {
+      "row": [
+        "Total"
+      ],
+      "measure": "Fees invoiced (R)",
+      "reason": "inherited"
+    },
+    {
+      "row": [
+        "Total"
+      ],
+      "measure": "Completed",
+      "reason": "inherited"
+    }
+  ]
+}
