@@ -1,0 +1,18 @@
+{
+  "name": "sa-turnaround",
+  "version": "1.0.0",
+  "description": "Working days for South Africa, and what they change about turnaround reporting.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "sample": "node scripts/make-sample.js",
+    "build": "node scripts/build-report.js",
+    "serve": "node scripts/serve.js",
+    "test": "node --test",
+    "check": "node scripts/check.js"
+  }
+}

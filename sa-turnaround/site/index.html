@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SA Turnaround: working days vs calendar days</title>
+<meta name="description" content="Three years of synthetic service-desk requests measured in calendar days and in South African working days, and a calculator that counts public holidays for you.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/styles.css">
+<script type="module" src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the report</a>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="#top" aria-label="SA Turnaround, back to top">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="17" rx="3"/><path d="M2 9h20M7 2v4M17 2v4"/><path class="tick" d="m8 15 2.5 2.5L16 12"/></svg>
+      SA Turnaround
+    </a>
+    <nav aria-label="Sections">
+      <a href="#findings">Findings</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#method">Method</a>
+      <a class="gh" href="https://github.com/nurah-kamal/sa-turnaround">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        <span>Code</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="intro" id="top">
+    <h1>Counting calendar days blamed this desk for public holidays.</h1>
+    <p class="lede" data-lede>Three years of service-desk requests, measured two ways.</p>
+    <p class="synthetic">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M8 7v4.5M8 4.6v.1"/></svg>
+      All data here is synthetic: made-up requests at a made-up desk, with no person in it.
+    </p>
+  </section>
+
+  <section class="tiles" aria-label="Key figures" data-tiles>
+    <div class="tile"><p class="tile-label">Loading figures…</p></div>
+  </section>
+
+  <section class="grid" id="findings">
+    <article class="panel chart-panel" aria-labelledby="c1-title">
+      <h2 id="c1-title">The calendar count misfires around Easter and Christmas</h2>
+      <p class="sub">How much higher the calendar late rate is than the working-day late rate, in percentage points, by the month a request was opened.</p>
+      <div class="chart" data-chart="months" role="img" aria-label="Column chart of the monthly gap between the calendar and working-day late rates"></div>
+      <details class="numbers"><summary>Show the numbers</summary><div data-table="months"></div></details>
+      <p class="source">Source: <a href="https://github.com/nurah-kamal/sa-turnaround/blob/main/sql/questions/02_late_by_month.sql">sql/questions/02_late_by_month.sql</a> on synthetic data.</p>
+    </article>
+
+    <article class="panel calc" id="calculator" aria-labelledby="calc-title">
+      <h2 id="calc-title">Count working days</h2>
+      <p class="sub">South African public holidays, including Sunday-rule and declared days.</p>
+      <form class="calc-form" data-calc novalidate>
+        <div class="field">
+          <label for="start">Opened</label>
+          <input id="start" name="start" type="date" value="2025-04-17" min="1995-01-01" max="2100-12-31" required>
+        </div>
+        <div class="field">
+          <label for="end">Closed</label>
+          <input id="end" name="end" type="date" value="2025-04-29" min="1995-01-01" max="2100-12-31" required>
+        </div>
+      </form>
+      <div class="calc-out" aria-live="polite" data-calc-out></div>
+      <ol class="strip" data-strip aria-label="Each day in the range"></ol>
+      <ul class="strip-key" aria-hidden="true">
+        <li><i class="k-work"></i>Working day</li>
+        <li><i class="k-hol"></i>Public holiday</li>
+        <li><i class="k-off"></i>Weekend</li>
+      </ul>
+      <ul class="hols" data-hols></ul>
+      <p class="note" data-calc-note></p>
+    </article>
+
+    <article class="panel chart-panel" aria-labelledby="c2-title">
+      <h2 id="c2-title">One holiday in the window triples the calendar late rate</h2>
+      <p class="sub">Late rate by how many weekday public holidays fell between opening and closing.</p>
+      <div class="chart" data-chart="exposure" role="img" aria-label="Bar chart of late rates by holidays in the window"></div>
+      <details class="numbers"><summary>Show the numbers</summary><div data-table="exposure"></div></details>
+      <p class="source">Source: <a href="https://github.com/nurah-kamal/sa-turnaround/blob/main/sql/questions/04_holiday_exposure.sql">sql/questions/04_holiday_exposure.sql</a> on synthetic data.</p>
+    </article>
+
+    <article class="panel chart-panel" aria-labelledby="c3-title">
+      <h2 id="c3-title">With holidays out of the way, refunds are the real problem</h2>
+      <p class="sub">Share of requests late in working days, by quarter opened.</p>
+      <div class="chart" data-chart="refunds" role="img" aria-label="Line chart of quarterly late rates, refunds against other categories"></div>
+      <details class="numbers"><summary>Show the numbers</summary><div data-table="refunds"></div></details>
+      <p class="source">Source: <a href="https://github.com/nurah-kamal/sa-turnaround/blob/main/sql/questions/05_category_by_quarter.sql">sql/questions/05_category_by_quarter.sql</a> on synthetic data.</p>
+    </article>
+
+
+  </section>
+
+  <section class="table-section">
+    <article class="panel" aria-labelledby="t1-title">
+      <h2 id="t1-title">Every category, both measures</h2>
+      <p class="sub">Turnaround in working days against each category's target. Late rates under both measures, all three years. A cross marks a category more than a point above the overall working-day late rate.</p>
+      <div class="table-wrap" data-table="categories"></div>
+      <p class="source">Source: <a href="https://github.com/nurah-kamal/sa-turnaround/blob/main/sql/questions/03_by_category.sql">sql/questions/03_by_category.sql</a> on synthetic data.</p>
+    </article>
+  </section>
+
+  <section class="method" id="method" aria-labelledby="method-title">
+    <h2 id="method-title">How this was built</h2>
+    <div class="method-grid">
+      <div>
+        <h3>The two measures</h3>
+        <p>Working days count the working days after a request was opened, up to and including the day it closed. The calendar measure subtracts the dates and, to be fair to it, stretches each target for weekends (a 3-day target becomes 5 calendar days). The only thing it gets wrong is public holidays.</p>
+      </div>
+      <div>
+        <h3>The holiday rules</h3>
+        <p>The library follows the Public Holidays Act 36 of 1994: the twelve fixed and Easter days, the Monday after any holiday that falls on a Sunday, and the days declared under section 2A (elections, the Rugby World Cup, and 27 December in years when Christmas fell on a Sunday). Each declared day is listed with its source, and declared days have been checked for <span data-verified>2009–2026</span>.</p>
+      </div>
+      <div>
+        <h3>Checked, not trusted</h3>
+        <p>The SQL works out working days from a calendar table with a running index. For every one of the <span data-closed>closed</span> requests, its answer is compared with the JavaScript library, and the tests fail if the two ever disagree.</p>
+      </div>
+      <div>
+        <h3>Planted, then found</h3>
+        <p>The generator planted one change: from 1 July 2025, refunds need a second sign-off. The holiday effect was not planted; it comes from the calendar alone. The tests check that the analysis still finds the first and that no other category moved.</p>
+      </div>
+    </div>
+    <p class="run">Run it yourself: <code>npm test</code>, then <code>npm run build</code>. Node 22.13 or later; nothing else to install.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Built by <a href="https://github.com/nurah-kamal">Nurah Kamal</a> in Cape Town. The data is synthetic; the holiday rules are real and sourced.</p>
+</footer>
+</body>
+</html>
