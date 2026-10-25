@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "SA Turnaround"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "cb8e7c34-7488-4b67-bad6-34c8c5c65215"
+  }
+}

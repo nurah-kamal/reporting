@@ -1,0 +1,25 @@
+/// SA Turnaround: service-desk turnaround in calendar days against working days, on synthetic data with South African public holidays.
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-ZA
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Category","Channel","Date","Requests","DataFolder"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Category
+ref table Channel
+ref table Date
+ref table Requests
+ref table 'Count Days As'
+
+ref cultureInfo en-US
+

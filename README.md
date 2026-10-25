@@ -8,9 +8,10 @@
 | --- | --- | --- | --- |
 | [SA Turnaround](sa-turnaround/) | Counting calendar days blamed a service desk for public holidays. A tested South African working-day library, SQL analysis of three years of synthetic requests, and a one-page report with a calculator. | [Open](https://nurah-kamal.github.io/reporting-and-bi/sa-turnaround/) | JavaScript, SQLite |
 | [Plain Board](plain-board/) | A small internal reporting board where every figure says what it does not prove. Twelve pages, every chart drawn in SVG, no framework. | [Open](https://nurah-kamal.github.io/reporting-and-bi/plain-board/) | HTML, CSS, JavaScript |
+| [Power BI Turnaround](power-bi-turnaround/) | SA Turnaround rebuilt as a Power BI model: a star schema, a date table that knows every South African public holiday, 23 measures and four report pages. Every figure matches the SQL version. | [Screenshots](power-bi-turnaround/#readme) | Power BI, DAX |
 | [Tableau](tableau/) | Three Tableau dashboards: South African HR on synthetic data, data science salaries, and sales performance. | [Tableau Public](https://public.tableau.com/app/profile/nurah.kamal/vizzes) | Tableau |
 
-More projects join as they ship: Report Checker, a Power BI model and a scheduled report pipeline.
+More projects join as they ship: Report Checker and a scheduled report pipeline.
 
 ## How this repo is organised
 

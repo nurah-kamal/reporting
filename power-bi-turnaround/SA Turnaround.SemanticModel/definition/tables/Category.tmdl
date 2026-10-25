@@ -1,0 +1,43 @@
+/// One row per request category, with its target.
+table Category
+	lineageTag: 9d26afda-d124-463b-9a6b-263cecbfb552
+
+	column Category
+		dataType: string
+		lineageTag: 97b0ada9-cb2d-4d3d-bce6-0bb118eab3b0
+		summarizeBy: none
+		sourceColumn: Category
+		sortByColumn: 'Category Sort'
+
+	/// The category's target, in working days.
+	column 'Target Working Days'
+		dataType: int64
+		lineageTag: 835fb649-7a84-4427-aaff-20fcf6ffafab
+		summarizeBy: none
+		sourceColumn: Target Working Days
+
+	/// The target as a spreadsheet would use it: stretched for weekends only (x 7/5, rounded up).
+	column 'Calendar Target Days'
+		dataType: int64
+		lineageTag: 31f8e52e-db4d-4e36-a21c-b6f46767fee6
+		summarizeBy: none
+		sourceColumn: Calendar Target Days
+
+	column 'Category Sort'
+		dataType: int64
+		isHidden
+		lineageTag: 9ea23f77-76ef-4422-9839-460ac22e7ca1
+		summarizeBy: none
+		sourceColumn: Category Sort
+
+	partition Category = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "category.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Renamed = Table.RenameColumns(Promoted, {{"category", "Category"}, {"target_working_days", "Target Working Days"}, {"calendar_target_days", "Calendar Target Days"}, {"sort_order", "Category Sort"}}),
+				    Typed = Table.TransformColumnTypes(Renamed, {{"Category", type text}, {"Target Working Days", Int64.Type}, {"Calendar Target Days", Int64.Type}, {"Category Sort", Int64.Type}})
+				in
+				    Typed
+
