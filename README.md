@@ -2,7 +2,7 @@
 
 **Working days for South Africa, and a one-page report on what counting them properly changes. Every holiday rule has a source, and every number on the page comes from a SQL file you can open.**
 
-**Live page:** published with GitHub Pages once this repository is public. Until then it runs locally with two commands ([below](#try-it-on-your-own-machine)).
+**Live page:** https://nurah-kamal.github.io/sa-turnaround/ (try the calculator with any two dates).
 
 ![The report page: a headline saying calendar days blamed the desk for public holidays, three key figures, a column chart of the monthly gap between the two measures, and the working-day calculator](docs/img/report.png)
 
@@ -84,7 +84,7 @@ No framework. No dependencies. No chart library. SQLite and the test runner are 
 | **The report** | `scripts/build-report.js` runs every question and writes `dist/data/report.json`, which the page reads. |
 | **The page** | Plain HTML, CSS and JavaScript. Every chart is drawn in SVG by one file, with a tooltip, direct labels and a table of the numbers behind it. Light and dark mode each use their own colour-blind-checked chart colours. |
 | **The tests** | 21 tests: holidays against gov.za for 2026 and 2027, Easter against published dates, the Christmas-on-Sunday years, SQL against the library on every request, and the planted pattern. |
-| **CI** | One workflow: check, test and build on every push, plus a secret scan over the whole history. Actions are pinned to exact commits. |
+| **CI** | Two workflows. `checks` runs check, test and build on every push, plus a secret scan over the whole history. `pages` tests, builds and publishes `dist/` to GitHub Pages on every push to `main`. Actions are pinned to exact commits. |
 
 ## Try it on your own machine
 
