@@ -45,6 +45,6 @@ There is one moment: when results land, each wrong figure's strike draws from le
 - Desktop: the claim on the left and the samples on the right, then the two file slots side by side, the rules, and the results full width.
 - Below 960px: one column, with the samples straight after the claim. Rule rows fold to two columns and the "Every figure" lines become small cards.
 - Below 720px: the file slots stack, and the nav keeps only the code link.
-- Below 480px: 16px side gutters, 44px tap targets on every control, a smaller lede so the samples start sooner, and the report table scrolls sideways inside its frame, with the first column held in place, reason tags wrapping, and a soft shadow on the right edge while there is more to see.
+- Below 480px: 16px side gutters, 44px tap targets on every control, a smaller lede so the samples start sooner, and the marked report turns from a table into one block per report row, with each figure on its own labelled line (label left, figure and reason tag right). Wider screens keep the table, which scrolls sideways inside its frame with the first column held in place.
 
 The page has no horizontal scroll at 375px (checked in the browser, 25 Oct 2026), and the design detector reports nothing on `site/`.

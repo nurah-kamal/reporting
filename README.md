@@ -70,7 +70,7 @@ An `.xlsx` file is a zip of XML files. [src/xlsx.js](src/xlsx.js) reads the zip 
 
 How each one is made, and why the totals carry what they carry, is in [docs/SAMPLES.md](docs/SAMPLES.md).
 
-![The checker on a phone: the verdict, the planted line, a scrolling row of reason chips and the marked report with struck-through figures](docs/img/phone.png)
+<p align="center"><img src="docs/img/phone.png" width="300" alt="The checker on a phone: the verdict, the planted line, a scrolling row of reason chips and the marked report with struck-through figures"></p>
 
 ## How it is built
 

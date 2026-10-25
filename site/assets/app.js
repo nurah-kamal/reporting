@@ -314,7 +314,7 @@ function renderMarked() {
     return h('tr', { class: isTotal ? 'total' : null }, cells.map((text, c) => {
       if (keyCols.has(c)) return h('td', { class: 'key' }, text);
       const f = measureAt.has(c) ? figures.get(`${ri}|${measureAt.get(c)}`) : null;
-      if (!f) return h('td', { class: 'plain' }, text);
+      if (!f) return h('td', { class: 'plain', 'data-label': report.headers[c] }, text);
       const miss = f.status === 'mismatch';
       const label = `${f.row}, ${f.measure}: the report says ${text}, the source gives ${sourceText(f)}. ${miss ? f.reason.title : 'Matches'}.`;
       const btn = h('button', {
@@ -325,7 +325,7 @@ function renderMarked() {
       }, miss
         ? [h('span', { class: 'pair' }, h('span', { class: 'was' }, text), h('span', { class: 'now' }, sourceText(f))), h('span', { class: 'tag' }, f.reason.title)]
         : h('span', { class: 'now' }, text, icon('tick')));
-      return h('td', {}, btn);
+      return h('td', { 'data-label': report.headers[c] }, btn);
     }));
   });
   $('[data-marked]').replaceChildren(h('table', {},
