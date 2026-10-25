@@ -1,6 +1,0 @@
-/// Folder holding the CSVs made by scripts/make-data.js, ending in a backslash.
-expression DataFolder = "C:\Users\user\Desktop\sa-turnaround-powerbi\data\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
-	lineageTag: 35527e08-e0a6-410c-8338-453f475df609
-
-	annotation PBI_ResultType = Text
-

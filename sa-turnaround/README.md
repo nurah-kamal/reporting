@@ -2,7 +2,7 @@
 
 **Working days for South Africa, and a one-page report on what counting them properly changes. Every holiday rule has a source, and every number on the page comes from a SQL file you can open.**
 
-**Live page:** https://nurah-kamal.github.io/reporting-and-bi/sa-turnaround/ (try the calculator with any two dates).
+**Live page:** https://nurah-kamal.github.io/reporting/sa-turnaround/ (try the calculator with any two dates).
 
 ![The report page: a headline saying calendar days blamed the desk for public holidays, three key figures, a column chart of the monthly gap between the two measures, and the working-day calculator](docs/img/report.png)
 

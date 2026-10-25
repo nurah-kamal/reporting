@@ -1,6 +1,0 @@
-category,target_working_days,calendar_target_days,sort_order
-Account change,2,3,1
-Billing query,3,5,2
-Document request,3,5,3
-Refund,5,7,4
-Complaint,5,7,5
