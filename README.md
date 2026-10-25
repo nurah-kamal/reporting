@@ -19,6 +19,8 @@ More projects join as they ship, next a scheduled report pipeline. Dashboards an
 - **One Pages site.** `pages.yml` builds every project that has a page into https://nurah-kamal.github.io/reporting/, with `site-index/` as the front page.
 - **History came with the projects.** Each one was moved in from its own repo with its commits kept.
 
+The calls behind this layout, and why each was made, are in [DECISIONS.md](DECISIONS.md).
+
 ## Data
 
 Everything here runs on invented or public data. Where a project comes from work I do professionally, it was rebuilt from scratch on synthetic data, and no work code or data is in this repository.
