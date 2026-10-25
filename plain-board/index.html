@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" data-page="auth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="theme-color" content="#F4F5F8" media="(prefers-color-scheme: light)">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="A starting point for building a small internal board in plain HTML, CSS and JavaScript.">
+  <title>Sign in · Help desk</title>
+  <link rel="icon" href="assets/img/logo.svg?v=9676fd2f" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css?v=0a797e23">
+  <script src="assets/js/shared/session.js?v=35de28c7"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="auth-layout">
+    <aside class="auth-panel">
+      <a class="brand" href="index.html"><img src="assets/img/logo.svg?v=9676fd2f" width="40" height="40" alt=""><span class="brand-text"><b>Help desk</b><small>Support</small></span></a>
+      <div class="auth-panel-copy">
+        <p class="auth-lead">A small internal board, in plain HTML, CSS and JavaScript.</p>
+        <p>This is the demo board that ships with the kit. Copy it, replace the data, and the shell, the charts and the tooling come with you.</p>
+        <ul class="auth-points">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>No framework and nothing to build</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Charts drawn in the page, no chart library</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Every figure says what it does not prove</li>
+        </ul>
+      </div>
+      <p class="auth-panel-foot">Sample data · nothing is connected</p>
+    </aside>
+
+    <main class="auth-main" id="main" tabindex="-1">
+      <div class="auth-card">
+        <a class="brand brand-mobile" href="index.html"><img src="assets/img/logo.svg?v=9676fd2f" width="36" height="36" alt=""><span class="brand-text"><b>Help desk</b><small>Support</small></span></a>
+
+        <header>
+          <h1>Sign in</h1>
+          <p>For the people who run the service desk.</p>
+        </header>
+
+        <form class="form" method="post" data-not-connected>
+          <div class="field">
+            <label for="email">Work email</label>
+            <input class="input" id="email" name="email" type="email" autocomplete="username" spellcheck="false" placeholder="name@example.com" required>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="password">
+              <input class="input" id="password" name="password" type="password" autocomplete="current-password" required>
+              <button type="button" data-toggle-password aria-controls="password" aria-pressed="false">Show</button>
+            </div>
+          </div>
+
+          <button class="button" type="submit">Sign in</button>
+
+          <div class="form-notice" role="status" tabindex="-1" hidden>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>
+            <span>Signing in isn't switched on. This is the demo sign-in that ships with the kit — replace it when you connect real accounts.</span>
+          </div>
+        </form>
+
+        <div class="demo">
+          <p class="divider">or</p>
+          <button class="button button-secondary" type="button" data-demo-sign-in="manager">Look around as a manager</button>
+          <button class="button button-secondary" type="button" data-demo-sign-in="member">Look around as a team member</button>
+          <p class="field-hint">Sample figures, no account needed. A manager sees everybody. A team member sees the requests assigned to them, with the person filter set and locked. Names, products and requests are made up.</p>
+          <div class="form-notice" id="demo-blocked" role="status" tabindex="-1" hidden>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>
+            <span>Your browser is blocking site storage, so the demo can't sign you in. Try a normal (not private) window.</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/shared/auth.js?v=9b4fdaf7"></script>
+</body>
+</html>
