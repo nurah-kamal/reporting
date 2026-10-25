@@ -1,0 +1,167 @@
+{
+  "id": "tickets",
+  "title": "Support tickets",
+  "blurb": "A service desk's monthly ticket report by channel, with the share resolved within two days and the average time to first reply.",
+  "report": "report.csv",
+  "source": "source.csv",
+  "recipe": {
+    "keys": [
+      {
+        "report": "Month",
+        "source": "opened_on",
+        "as": "month"
+      },
+      {
+        "report": "Channel",
+        "source": "channel",
+        "as": "value"
+      }
+    ],
+    "id": "ticket_id",
+    "date": null,
+    "filters": [
+      {
+        "column": "category",
+        "not": "Spam"
+      }
+    ],
+    "measures": [
+      {
+        "report": "Tickets",
+        "agg": "count"
+      },
+      {
+        "report": "Resolved in 2 days",
+        "agg": "share",
+        "column": "resolved_in_2_days",
+        "value": "Yes"
+      },
+      {
+        "report": "First reply (hours)",
+        "agg": "mean",
+        "column": "first_reply_hours"
+      }
+    ]
+  },
+  "planted": [
+    {
+      "row": [
+        "Jul 2026",
+        "Email"
+      ],
+      "measure": "Tickets",
+      "reason": "date-range"
+    },
+    {
+      "row": [
+        "Jul 2026",
+        "Email"
+      ],
+      "measure": "Resolved in 2 days",
+      "reason": "date-range"
+    },
+    {
+      "row": [
+        "Jul 2026",
+        "Email"
+      ],
+      "measure": "First reply (hours)",
+      "reason": "date-range"
+    },
+    {
+      "row": [
+        "Jul 2026",
+        "Phone"
+      ],
+      "measure": "Tickets",
+      "reason": "date-range"
+    },
+    {
+      "row": [
+        "Jul 2026",
+        "Phone"
+      ],
+      "measure": "Resolved in 2 days",
+      "reason": "date-range"
+    },
+    {
+      "row": [
+        "Jul 2026",
+        "Phone"
+      ],
+      "measure": "First reply (hours)",
+      "reason": "date-range"
+    },
+    {
+      "row": [
+        "Jul 2026",
+        "Chat"
+      ],
+      "measure": "Tickets",
+      "reason": "date-range"
+    },
+    {
+      "row": [
+        "Jul 2026",
+        "Chat"
+      ],
+      "measure": "Resolved in 2 days",
+      "reason": "date-range"
+    },
+    {
+      "row": [
+        "Jul 2026",
+        "Walk-in"
+      ],
+      "measure": "Tickets",
+      "reason": "date-range"
+    },
+    {
+      "row": [
+        "Aug 2026",
+        "Chat"
+      ],
+      "measure": "Tickets",
+      "reason": "filter"
+    },
+    {
+      "row": [
+        "Aug 2026",
+        "Chat"
+      ],
+      "measure": "Resolved in 2 days",
+      "reason": "filter"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "Email"
+      ],
+      "measure": "Tickets",
+      "reason": "duplicates"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "Email"
+      ],
+      "measure": "Resolved in 2 days",
+      "reason": "duplicates"
+    },
+    {
+      "row": [
+        "Sep 2026",
+        "Email"
+      ],
+      "measure": "First reply (hours)",
+      "reason": "duplicates"
+    },
+    {
+      "row": [
+        "Total"
+      ],
+      "measure": "Tickets",
+      "reason": "inherited"
+    }
+  ]
+}
