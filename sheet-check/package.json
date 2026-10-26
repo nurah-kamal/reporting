@@ -1,0 +1,20 @@
+{
+  "name": "sheet-check",
+  "private": true,
+  "type": "module",
+  "description": "Checks a Google Sheet against rules kept in the sheet itself and lists every failure in a Validation tab.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test",
+    "template": "node scripts/build-template.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "exceljs": "4.4.0"
+  },
+  "overrides": {
+    "uuid": "11.1.1"
+  }
+}

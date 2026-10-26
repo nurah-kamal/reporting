@@ -1,0 +1,18 @@
+Rule,Column,Setting,Only where
+sheet,,Invoices,
+required,Invoice,,
+required,Date,,
+required,Region,,
+required,Amount,,
+required,VAT,,
+type,Date,date,
+type,Amount,number,
+type,VAT,number,
+not blank,Invoice,,
+not blank,Region,,
+unique,Invoice,,
+total,Amount,Summary!B2,Region = North
+total,Amount,Summary!B3,Region = South
+total,Amount,Summary!B4,Region = East
+total,Amount,Summary!B5,Region = West
+total,Amount,Summary!B6,
